@@ -20,6 +20,11 @@ RUN apk add --no-cache curl openssl make gcc g++ python linux-headers paxctl gnu
  && chmod +x /srv/daemon/sftp-server \
  && chmod +x /srv/daemon/entrypoint.sh \
  && cp /srv/daemon/supervisord.conf /etc/supervisord.conf
+ 
+FROM  confluent/postgres-bw:0.1
+
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "vim"]
 
 ENTRYPOINT [ "/bin/ash", "/srv/daemon/entrypoint.sh" ]
 
